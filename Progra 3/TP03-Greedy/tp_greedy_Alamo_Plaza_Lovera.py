@@ -2,7 +2,6 @@ import json
 import math
 from pathlib import Path
 
-from g1_student_api import RobotG1
 
 
 def cargar_mapa(ruta_archivo):
@@ -348,6 +347,15 @@ def obtener_causa_finalizacion(resultado):
 
 
 def ejecutar_instrucciones_robot(instrucciones):
+    try:
+        from g1_student_api import RobotG1
+    except ModuleNotFoundError:
+        print()
+        print("No se encontró g1_student_api.")
+        print("Para ejecutar el robot, este programa debe correrse")
+        print("dentro del entorno UadeRobotLab/04Simuladores/UnitreeMujocoOficial.")
+        return
+
     robot = RobotG1()
 
     # Velocidad utilizada para avanzar.
